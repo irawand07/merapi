@@ -1,0 +1,51 @@
+<script>
+function validasi(){
+		var daya = input.daya.value;
+		var lintang = input.lintang.value;
+		var bujur = input.bujur.value;
+		var validasi="ok";
+		
+		if((daya < 1)||(daya > 1000)){
+			document.getElementById('daya').innerHTML=' (Minimal 1, Maksimal 1000)';
+			document.getElementById('daya').className="alert-danger";
+			validasi="gagal";
+		}else{
+			document.getElementById('daya').innerHTML=' <b>(Ok)</b>';
+			document.getElementById('daya').className="alert-info";
+		}
+		if((lintang>-7.0)||(lintang<-8.60)){
+			document.getElementById('lintang').innerHTML=' (Lokasi Terlalu Jauh)';
+			document.getElementById('lintang').className="alert-danger";
+			validasi="gagal";
+		}else{
+			document.getElementById('lintang').innerHTML=' <b>(Ok)</b>';
+			document.getElementById('lintang').className="alert-info";
+		}
+		if((bujur<110.0)||(bujur>110.60)){
+			document.getElementById('bujur').innerHTML=' (Lokasi Terlalu Jauh)';
+			document.getElementById('bujur').className="alert-danger";
+			validasi="gagal";
+		}else{
+			document.getElementById('bujur').innerHTML=' <b>(Ok)</b>';
+			document.getElementById('bujur').className="alert-info";
+		}
+
+		if (validasi == "gagal")
+			return false;
+	}
+</script>
+
+		<form name='input' method="post" action="input_lokasi.php" onsubmit="return validasi()" >
+					<label >Nama Pengungsian		</label><br/>
+						<input  class="form-control" type="text" name="nama"  required /><br/>
+					<label >Alamat Pengungsian		</label> <br/>
+						<textarea class="form-control" name="alamat" required></textarea><br/>
+					<label >Daya Tampung (Orang) </label><span id="daya" class="" ></span><br/>
+						<input class="form-control" type="number" name="daya" maxlength="4"  required /><br/>
+					<label >Latitude 	   </label><span id="lintang" class="" ></span><br/>
+						<input class="form-control" type="text" name="lintang"  required /><br/>
+					<label >Longitude  </label><span id="bujur" class="" ></span><br/>
+						<input class="form-control" type="text" name="bujur"  required /><br/>
+				 <input class="btn btn-primary" type="submit" id="submit" name="submit" value="Simpan" /> 
+				 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+		</form>
